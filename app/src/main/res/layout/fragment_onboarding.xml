@@ -3,11 +3,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OnboardingFragment">
-
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.onboarding.OnboardingFragment"
+    android:background="#858585">
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2OnboardigFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Onboarding" />
+        android:layout_height="match_parent"/>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btuSkipOnboardingFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/background_button_8dp_circle"
+        android:text="Өткізу"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:fontFamily="@font/sf_medium"
+        android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"/>
+<com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+    android:id="@+id/dotsIndiator"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|bottom"
+    android:layout_marginBottom="100dp"
+    app:dotsColor="@color/grey_300"
+    app:selectedDotColor="@color/primary_300"
+    app:dotsSize="7dp"
+    app:dotsSpacing="4dp"
+    app:dotsWidthFactor="2.5"/>
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btuNextOnboardingFragment"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_gravity="center|bottom"
+    android:background="@drawable/background_button_12dp"
+    android:backgroundTint="@color/primary_btn"
+    android:layout_marginBottom="38dp"
+    android:text="Әрі қарай"
+    android:textColor="@color/white"
+    android:textAllCaps="false"
+    android:textSize="12sp"
+    android:layout_marginTop="24dp"
+    android:textStyle="normal"
+    android:fontFamily="@font/sf_bold"
+    android:layout_marginHorizontal="24dp"/>
 </FrameLayout>
