@@ -56,10 +56,10 @@ class OnboardingFragment : Fragment() {
                     super.onPageSelected(position)
                     if (position == pageCount - 1) {
                         binding.btuSkipOnboardingFragment.visibility = View.INVISIBLE
-                        binding.btuNextOnboardingFragment.text = "Бастау"
+                        binding.btuNextOnboardingFragment.visibility = View.VISIBLE
                     } else {
                         binding.btuSkipOnboardingFragment.visibility = View.VISIBLE
-                        binding.btuNextOnboardingFragment.text = "Әрі қарай"
+                        binding.btuNextOnboardingFragment.visibility = View.INVISIBLE
                     }
                 }
             }
