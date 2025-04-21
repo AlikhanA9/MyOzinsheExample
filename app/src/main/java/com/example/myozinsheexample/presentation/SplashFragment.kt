@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myozinsheexample.R
+import com.example.myozinsheexample.provideNavigationHost
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -25,11 +26,18 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        provideNavigationHost()?.apply {
+            setNavigationVisibility(false)
+        }
         lifecycleScope.launch {
             delay(3000)
-                findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment)
+            if (isAdded && findNavController().currentDestination?.id == R.id.splashFragment) {
+                val action = SplashFragmentDirections.actionSplashFragmentToOnboardingFragment()
+                findNavController().navigate(action)
             }
         }
     }
+}
+
 
 

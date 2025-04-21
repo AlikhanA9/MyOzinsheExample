@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.myozinsheexample.R
 import com.example.myozinsheexample.data.OnboardingInfoList
 import com.example.myozinsheexample.databinding.FragmentOnboardingBinding
+import com.example.myozinsheexample.provideNavigationHost
 
 class OnboardingFragment : Fragment() {
 
@@ -25,45 +26,49 @@ class OnboardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val adapter = OnboardingAdapter()
-        adapter.submitList(OnboardingInfoList.onboardingModelList)
-        binding.viewPager2OnboardigFragment.adapter = adapter
-        binding.dotsIndiator.setViewPager2(binding.viewPager2OnboardigFragment)
-
-        val pageCount = OnboardingInfoList.onboardingModelList.size
+        provideNavigationHost()?.apply {
+            setNavigationVisibility(false)
 
 
-        binding.btuSkipOnboardingFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
-        }
+            val adapter = OnboardingAdapter()
+            adapter.submitList(OnboardingInfoList.onboardingModelList)
+            binding.viewPager2OnboardigFragment.adapter = adapter
+            binding.dotsIndiator.setViewPager2(binding.viewPager2OnboardigFragment)
+
+            val pageCount = OnboardingInfoList.onboardingModelList.size
 
 
-        binding.btuNextOnboardingFragment.setOnClickListener {
-            val current = binding.viewPager2OnboardigFragment.currentItem
-            if (current < pageCount - 1) {
-                binding.viewPager2OnboardigFragment.currentItem = current + 1
-            } else {
-
+            binding.btuSkipOnboardingFragment.setOnClickListener {
                 findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
             }
-        }
 
 
-        binding.viewPager2OnboardigFragment.registerOnPageChangeCallback(
-            object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    if (position == pageCount - 1) {
-                        binding.btuSkipOnboardingFragment.visibility = View.INVISIBLE
-                        binding.btuNextOnboardingFragment.visibility = View.VISIBLE
-                    } else {
-                        binding.btuSkipOnboardingFragment.visibility = View.VISIBLE
-                        binding.btuNextOnboardingFragment.visibility = View.INVISIBLE
-                    }
+            binding.btuNextOnboardingFragment.setOnClickListener {
+                val current = binding.viewPager2OnboardigFragment.currentItem
+                if (current < pageCount - 1) {
+                    binding.viewPager2OnboardigFragment.currentItem = current + 1
+                } else {
+
+                    findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
                 }
             }
-        )
+
+
+            binding.viewPager2OnboardigFragment.registerOnPageChangeCallback(
+                object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        if (position == pageCount - 1) {
+                            binding.btuSkipOnboardingFragment.visibility = View.INVISIBLE
+                            binding.btuNextOnboardingFragment.visibility = View.VISIBLE
+                        } else {
+                            binding.btuSkipOnboardingFragment.visibility = View.VISIBLE
+                            binding.btuNextOnboardingFragment.visibility = View.INVISIBLE
+                        }
+                    }
+                }
+            )
+        }
     }
 }
 
