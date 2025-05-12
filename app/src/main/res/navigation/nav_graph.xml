@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.myozinsheexample.presentation.HomeFragment"
+        android:name="com.example.myozinsheexample.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
